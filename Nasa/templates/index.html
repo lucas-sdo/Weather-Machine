@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR" id="html">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Asset&display=swap" rel="stylesheet">
+    <meta name="description" content="AI Forecast for long-time weather prediction">
+    <meta name="keywords" content="AI, forecast, weather, prediction, long-time weather prediction">
+    <meta name="author" content="Lucas Souza de Oliveira">
+    <link rel="shortcut icon" href="../static/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/static/script.js" defer></script>
+    <title>Weather Machine</title>
+</head>
+
+<body id="body">
+    <div id="loader_overlay">
+        <div class="loader_content">
+            <div class="loader"></div>
+            <p id="loader_text">Loading...</p>
+        </div>
+    </div>
+    <div id="main">
+        <h1 id="titulo">Weather Machine</h1>
+        <div id="inputs">
+            <div id="filtar_e_label">
+                <label for="search" id="filtar_dados">Filtrar dados</label>
+                <input type="search" id="search" name="search" />
+            </div>
+            <input type="date" id="date">
+            <div id="idioma_e_label">
+                <label id="idioma">Idioma:</label>
+                <select id="slc_idioma">
+                    <option value="en">English</option>
+                    <option value="pt">Português</option>
+                </select>
+            </div>
+            <label class="switch"><input type="checkbox" id="meuSwitch"><span class="slider"></span></label>
+            <div class="divSearch">
+            </div>
+        </div>
+        <div id="cidades" data-type="cidades">
+            <label><input type="radio" name="cidade" value="Acra" class="cidade"> Acra</label>
+            <label><input type="radio" name="cidade" value="Amsterdam" class="cidade"> Amsterdam</label>
+            <label><input type="radio" name="cidade" value="Atenas" class="cidade"> Atenas</label>
+            <label><input type="radio" name="cidade" value="Atlanta" class="cidade"> Atlanta</label>
+            <label><input type="radio" name="cidade" value="Bangkok" class="cidade"> Bangkok</label>
+            <label><input type="radio" name="cidade" value="Barcelona" class="cidade"> Barcelona</label>
+            <label><input type="radio" name="cidade" value="Bejing" class="cidade"> Bejing</label>
+            <label><input type="radio" name="cidade" value="Belo Horizonte" class="cidade"> Belo Horizonte</label>
+            <label><input type="radio" name="cidade" value="Berlim" class="cidade"> Berlim</label>
+            <label><input type="radio" name="cidade" value="Bogotá" class="cidade"> Bogotá</label>
+            <label><input type="radio" name="cidade" value="Brasília" class="cidade"> Brasília</label>
+            <label><input type="radio" name="cidade" value="Bruxelas" class="cidade"> Bruxelas</label>
+            <label><input type="radio" name="cidade" value="Budapeste" class="cidade"> Budapeste</label>
+            <label><input type="radio" name="cidade" value="Buenos Aires" class="cidade"> Buenos Aires</label>
+            <label><input type="radio" name="cidade" value="Cairo" class="cidade"> Cairo</label>
+            <label><input type="radio" name="cidade" value="Caracas" class="cidade"> Caracas</label>
+            <label><input type="radio" name="cidade" value="Chicago" class="cidade"> Chicago</label>
+            <label><input type="radio" name="cidade" value="Cidade do México" class="cidade"> Cidade do México</label>
+            <label><input type="radio" name="cidade" value="Dallas" class="cidade"> Dallas</label>
+            <label><input type="radio" name="cidade" value="Denever" class="cidade"> Denever</label>
+            <label><input type="radio" name="cidade" value="Dubai" class="cidade"> Dubai</label>
+            <label><input type="radio" name="cidade" value="Dublim" class="cidade"> Dublim</label>
+            <label><input type="radio" name="cidade" value="Goiânia" class="cidade"> Goiânia</label>
+            <label><input type="radio" name="cidade" value="Guatemala" class="cidade"> Guatemala</label>
+            <label><input type="radio" name="cidade" value="Havana" class="cidade"> Havana</label>
+            <label><input type="radio" name="cidade" value="Istambul" class="cidade"> Istambul</label>
+            <label><input type="radio" name="cidade" value="Jacarta" class="cidade"> Jacarta</label>
+            <label><input type="radio" name="cidade" value="Jerusalém" class="cidade"> Jerusalém</label>
+            <label><input type="radio" name="cidade" value="Johanesburgo" class="cidade"> Johanesburgo</label>
+            <label><input type="radio" name="cidade" value="Kiev" class="cidade"> Kiev</label>
+            <label><input type="radio" name="cidade" value="La Paz" class="cidade"> La Paz</label>
+            <label><input type="radio" name="cidade" value="Lima" class="cidade"> Lima</label>
+            <label><input type="radio" name="cidade" value="Lisboa" class="cidade"> Lisboa</label>
+            <label><input type="radio" name="cidade" value="Londres" class="cidade"> Londres</label>
+            <label><input type="radio" name="cidade" value="Los Angeles" class="cidade"> Los Angeles</label>
+            <label><input type="radio" name="cidade" value="Luanda" class="cidade"> Luanda</label>
+            <label><input type="radio" name="cidade" value="Luxemburgo" class="cidade"> Luxemburgo</label>
+            <label><input type="radio" name="cidade" value="Madri" class="cidade"> Madri</label>
+            <label><input type="radio" name="cidade" value="Manaus" class="cidade"> Manaus</label>
+            <label><input type="radio" name="cidade" value="Melborn" class="cidade"> Melborn</label>
+            <label><input type="radio" name="cidade" value="Milão" class="cidade"> Milão</label>
+            <label><input type="radio" name="cidade" value="Montevideo" class="cidade"> Montevideo</label>
+            <label><input type="radio" name="cidade" value="Moscou" class="cidade"> Moscou</label>
+            <label><input type="radio" name="cidade" value="Montreal" class="cidade"> Montreal</label>
+            <label><input type="radio" name="cidade" value="Mumbai" class="cidade"> Mumbai</label>
+            <label><input type="radio" name="cidade" value="Munique" class="cidade"> Munique</label>
+            <label><input type="radio" name="cidade" value="Nova Iorque" class="cidade"> Nova Iorque</label>
+            <label><input type="radio" name="cidade" value="Ottawa" class="cidade"> Ottawa</label>
+            <label><input type="radio" name="cidade" value="Paris" class="cidade"> Paris</label>
+            <label><input type="radio" name="cidade" value="Pequim" class="cidade"> Pequim</label>
+            <label><input type="radio" name="cidade" value="Porto" class="cidade"> Porto</label>
+            <label><input type="radio" name="cidade" value="Quebec" class="cidade"> Quebec</label>
+            <label><input type="radio" name="cidade" value="Quito" class="cidade"> Quito</label>
+            <label><input type="radio" name="cidade" value="Rio de Janeiro" class="cidade"> Rio de Janeiro</label>
+            <label><input type="radio" name="cidade" value="Roma" class="cidade"> Roma</label>
+            <label><input type="radio" name="cidade" value="Santiago" class="cidade"> Santiago</label>
+            <label><input type="radio" name="cidade" value="São Paulo" class="cidade"> São Paulo</label>
+            <label><input type="radio" name="cidade" value="Seoul" class="cidade"> Seoul</label>
+            <label><input type="radio" name="cidade" value="Shangai" class="cidade"> Shangai</label>
+            <label><input type="radio" name="cidade" value="Sidney" class="cidade"> Sidney</label>
+            <label><input type="radio" name="cidade" value="Tel Aviv" class="cidade"> Tel Aviv</label>
+            <label><input type="radio" name="cidade" value="Tokyo" class="cidade"> Tokyo</label>
+            <label><input type="radio" name="cidade" value="Toronto" class="cidade"> Toronto</label>
+            <label><input type="radio" name="cidade" value="Varsóvia" class="cidade"> Varsóvia</label>
+            <label><input type="radio" name="cidade" value="Washington" class="cidade"> Washington</label>
+        </div>
+        <div id="dados"></div>
+        <div id="botoes">
+            <button id="enviar">Enviar</button>
+        </div>
+    </div>
+    <div id="previsao_main">
+        <div id="previsao">Insert the data to have AI prediction!</div>
+        <br>
+        <div id="recomendacoes">Recomendações:</div>
+        <br>
+        <div id="margem_de_erro">A Previsão por IA tem uma margem de erro de cerca de 30%, devido as mudanças
+            climáticas principalmente
+        </div>
+    </div>
+    <div id="graficos_main">
+        <br>
+        <div id="graficos">
+            <canvas id="grafico_temperatura"></canvas>
+            <canvas id="grafico_chuva"></canvas>
+            <canvas id="grafico_umidade"></canvas>
+            <br>
+            <canvas id="grafico_vento"></canvas>
+            <canvas id="grafico_UVA"></canvas>
+        </div>
+    </div>
+    <div id="curiosidade_main">
+        <h2 id="curiosidade">FUN FACTS</h2>
+    </div>
+</body>
+
+</html>

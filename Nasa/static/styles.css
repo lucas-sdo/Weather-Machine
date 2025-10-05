@@ -1,0 +1,392 @@
+        body {
+            color: #545454;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
+            background: url("/static/images/background.png");
+            filter: saturate(100%);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100%;
+            transition: 0.5s;
+        }
+
+        html {
+            padding: 0;
+            margin: 0;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: inherit;
+            filter: saturate(100%);
+            z-index: -1;
+        }
+
+        body::selection {
+            background-color: transparent;
+            text-decoration: underline 2px;
+        }
+
+        h1 {
+            color: #545454;
+            font-family: 'Asset';
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .hide {
+            display: none;
+        }
+
+        #cidades {
+            display: grid;
+            grid-template-columns: repeat(9, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        #cidades label {
+            margin: 2px 0;
+        }
+
+        .cidade {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(8px);
+            padding: 20px;
+            margin: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cidade:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        #cidades label {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #cidades label:hover,
+        #cidades input:hover {
+            transform: scale(1.05);
+        }
+
+        #main {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: 92.5%;
+            max-height: 85%;
+            overflow-y: auto;
+            height: max-content;
+            margin: 40px auto 20px auto;
+            padding: 20px;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        #previsao_main {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+            width: max-content;
+            min-width: 1811.64;
+            font-size: larger;
+            max-height: 85%;
+            overflow-y: auto;
+            max-width: 93%;
+            height: max-content;
+            margin: 0 auto 40px auto;
+            padding: 20px;
+            border-radius: 20px;
+        }
+
+        #graficos_main {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: 90%;
+            max-height: 85%;
+            overflow-y: auto;
+            height: max-content;
+            margin: 0 auto 40px auto;
+            padding: 20px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #curiosidade_main {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: max-content;
+            min-width: 1811.64;
+            max-height: 85%;
+            overflow-y: auto;
+            max-width: 93%;
+            height: max-content;
+            margin: 0 auto 40px auto;
+            padding: 20px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+        }
+
+        #graficos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #botoes {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            background-color: #0084ff;
+            box-shadow: none;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+            font-size: medium;
+            width: 10%;
+            padding: 10px;
+            transition: 0.5s;
+        }
+
+        button:hover {
+            width: 11%;
+            background-color: #0063c0;
+        }
+
+        #loader_overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(143, 197, 255, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            display: none;
+        }
+
+        .loader_content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .loader {
+            width: calc(100px - 14px);
+            height: 50px;
+            border-radius: 50px;
+            background:
+                radial-gradient(farthest-side, #0000 calc(100% - 15px), #ccc calc(100% - 14px) 99%, #0000) left,
+                radial-gradient(farthest-side, #0000 calc(100% - 15px), #ccc calc(100% - 14px) 99%, #0000) right;
+            background-size: calc(50% + 7px) 100%;
+            background-repeat: no-repeat;
+            position: relative;
+            animation: l10-0 1s infinite linear;
+        }
+
+        .loader:before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            margin: auto;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #0084ff;
+            transform-origin: -14px 50%;
+            animation: l10-1 0.5s infinite linear;
+        }
+
+        @keyframes l10-0 {
+
+            0%,
+            49.99% {
+                transform: scaleX(1)
+            }
+
+            50%,
+            100% {
+                transform: scaleX(-1)
+            }
+        }
+
+        @keyframes l10-1 {
+            100% {
+                transform: rotate(1turn)
+            }
+        }
+
+        #loader_text {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.7);
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #00a2ff;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: rgb(255, 255, 255);
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #210034;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(26px);
+        }
+
+        #inputs {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px;
+        }
+
+        #inputs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        input[type="date"],
+        input[type="search"],
+        select {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        input[type="date"]:focus,
+        input[type="search"]:focus,
+        select:focus {
+            border-color: #0084ff;
+            box-shadow: 0 0 5px rgba(0, 132, 255, 0.5);
+        }
+
+        #cusriosidade {
+            font-style: italic;
+        }
+
+        @media screen and (max-width: 768px) {
+            body {
+                background-attachment: scroll;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            #cidades {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(180px, 1fr));
+                gap: 10px 20px;
+                margin-top: 10px;
+            }
+
+            #main,
+            #previsao_main,
+            #graficos_main {
+                width: 85%;
+            }
+
+            #curiosidade_main {
+                width: 80%;
+            }
+
+            canvas {
+                width: 10%;
+            }
+
+            button {
+                width: 30%;
+            }
+
+            button:hover {
+                width: 35%;
+            }
+        }
